@@ -34,12 +34,13 @@ public class MainCoder {
 		// for (Node n : treeList) {
 		// System.out.println(n.root.symbol + "  " + n.root.probability);
 		// }
+		if(treeList.size()>1)
 		huffman();
 		try {
 			String name[] = inputFile.getName().split("\\.");
 			fos = new FileOutputStream(new File(name[0] + ".dict"));
 			writeDictionary("", treeList.get(0));
-			System.out.println("Œrednia d³ugoœæ kodowania: " + avgLength);
+			System.out.println("Åšrednia dÅ‚ugoÅ›Ä‡ kodowania: " + avgLength);
 			System.out.println("Entropia: " + entropia());
 			fos.flush();
 			fos.close();
@@ -122,7 +123,9 @@ public class MainCoder {
 					fos.write("\n".getBytes());
 				}
 				first = false;
-
+				if(result.equals(""))
+					result="1";
+				System.out.println(node.root.symbol + " " + result);
 				fos.write((node.root.symbol + " " + result).getBytes());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
